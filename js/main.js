@@ -226,3 +226,66 @@ if (numero3 % 10 === 0 && numero3 > 0) {
 } else if (numero3 % 10 === 0 && numero3 < 0) {
   console.log(`El número ${numero3} es negativo y es múltiplo de 10`);
 }
+
+// NUEVO: MENÚ AGREGADO AL FINAL
+let menu = prompt(
+  "Elegí una opción:\n1. Verificar edad\n2. Adivinar color\n3. Calcular impuesto de auto\n4. Sumar dos números\n5. Salir"
+);
+
+switch (menu) {
+  case "1":
+    if (edadPrompt >= 18) {
+      alert("Sos mayor de edad.");
+    } else {
+      alert("Sos menor de edad.");
+    }
+    break;
+
+  case "2":
+    const colorCorrecto = "Rojo";
+    let colorInput = prompt("Adiviná el color:");
+    while (colorInput !== colorCorrecto) {
+      alert("Incorrecto, probá de nuevo.");
+      colorInput = prompt("Adiviná el color:");
+    }
+    alert("¡Correcto!");
+    break;
+
+  case "3":
+    let marcaAuto = prompt("Ingrese la marca de su auto:");
+    let impuestoAuto = 200;
+    switch (marcaAuto) {
+      case "Toyota":
+        impuestoAuto += 100;
+        break;
+      case "Ford":
+        impuestoAuto += 150;
+        break;
+      case "Chevrolet":
+        impuestoAuto += 200;
+        break;
+      default:
+        alert("Marca no reconocida.");
+        impuestoAuto = 0;
+    }
+    if (impuestoAuto > 0) {
+      alert("El impuesto es: $" + impuestoAuto);
+    }
+    break;
+
+  case "4":
+    if (confirm("¿Querés sumar dos números?")) {
+      let num1 = Number(prompt("Ingresá el primer número:"));
+      let num2 = Number(prompt("Ingresá el segundo número:"));
+      alert("Resultado: " + (num1 + num2));
+    }
+    break;
+
+  case "5":
+    alert("Gracias por usar el simulador.");
+    break;
+
+  default:
+    alert("Opción inválida.");
+    break;
+}
