@@ -68,10 +68,9 @@ for (let i = 0; i < usuarios.length; i++) {
 
 //TERNARIO
 let clima = "soleado";
-let mensaje =
-  clima === "soleado"
-    ? console.log(`Hoy hace buen tiempo`)
-    : console.log(`Hoy hace mal tiempo`);
+let mensaje = clima === "soleado";
+console.log(`Hoy hace buen tiempo`);
+console.log(`Hoy hace mal tiempo`);
 
 //SWITCH caso: calcular los impuestos de cada marca de auto
 let marca = prompt("Ingrese la marca de su auto");
@@ -288,4 +287,61 @@ switch (menu) {
   default:
     alert("Opción inválida.");
     break;
+}
+
+//funcion constructora
+function persona(nombre, edad, direccion) {
+  this.nombre = nombre;
+  this.edad = edad;
+  this.direccion = direccion;
+
+  this.saludar = function () {
+    console.log(
+      `Hola, mi nimbre es ${this.nombre}, parezco tener ${this.edad} años y estoy viviendo en ${this.direccion}`
+    );
+  };
+}
+
+let persona1 = new persona("Tomas", 30, "Castelli 342");
+console.log(persona1.direccion); // Imprime "Castelli 342"
+persona1.saludar(); // Llama al método saludar de la persona1
+
+//ejercicio practico local JSON,LocalStorage y SessionStorage
+// Contador global para los IDs
+let contadorId = 1;
+
+// Clase Producto
+class Producto {
+  constructor(id, nombre, precio, cantidad) {
+    this.id = id;
+    this.nombre = nombre;
+    this.precio = parseFloat(precio);
+    this.cantidad = parseInt(cantidad);
+    this.subtotal = this.calcularSubtotal();
+  }
+
+  calcularSubtotal() {
+    return this.precio * this.cantidad;
+  }
+}
+
+// Array para guardar los productos
+const productos = [];
+
+function crearProducto() {
+  const nombre = prompt("Ingrese el nombre del producto:");
+  const precio = prompt("Ingrese el precio del producto:");
+  const cantidad = prompt("Ingrese la cantidad del producto:");
+
+  if (nombre && precio && cantidad) {
+    const producto = new Producto(contadorId, nombre, precio, cantidad);
+    contadorId++; // Aumenta el ID para el próximo producto
+    productos.push(producto);
+    console.log("Producto agregado:", producto);
+    alert(
+      `Producto "${producto.nombre}" agregado con éxito.\nSubtotal: $${producto.subtotal}`
+    );
+  } else {
+    alert("Debes completar todos los campos.");
+  }
 }
